@@ -1,0 +1,1009 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww19040\viewh11080\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs36 \cf0 \ul \ulc0 To submit homework
+\b\fs34 \ulnone \
+
+\b0 email 
+\b ivigan@qc.cuny.edu\
+
+\b0 subject 
+\b CS212 HW 1
+\fs28 \ul \
+\
+Lecture 2 - Basics of the Java Language\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0\fs24 \cf0 \ulnone \
+\ul Variables\ulnone \
+
+\b Instance Variables (Non-Static Fields)
+\b0 - values are unique to each instance of a class (unique to each object)\
+	eg. currentSpeed of bicycle_1 is different from currentSpeed of bicycle_2\
+
+\b Class Variables (Static Fields)
+\b0 - any field declared with the static modifier and is the same for each object\
+	eg. static in numWheels = 2; makes a static field, each bicycle has the same number of wheels\
+
+\b Local Variables
+\b0  - Similar to how an object store state of fields, a method will store its temporary state in a local variable.  \
+	These are local to the methods in which they are declared\
+
+\b Parameters
+\b0 - the String[] args part of the main method, the input of a function/method\
+\
+Rules for Naming\
+-variable names are case-sensitive\
+-generally use just numbers and letters\
+-generally use camelCaseNotation\
+\
+\ul Primitive Data Types\
+\ulnone Java is statically-typed, meaning all variables must be declared before they are used.  This involves stating the variables type and name.\
+eg. int gear = 1;\
+
+\b byte
+\b0 - an 8 bit signed two's complement integer.  it has a minimum of -128 and a max of 127.  useful for saving memory in large arrays where savings actual matter.  can be used in place of int where limits help clarify code.\
+
+\b short
+\b0 - a 16 bit signed two's complement integer.  Min = -32,768, Max 32,767.\
+
+\b int
+\b0 - 32-bit signed two's complement int.  Min = -2,147,483,648, Max = 2,147,483,647\
+
+\b long
+\b0  - 64 bit, really fucking big\
+
+\b float
+\b0 - single-precision 32-bit IEEE 754 floating point.  \
+
+\b double
+\b0 - 65 bit IEEE 754 floating point. most commonly used for decimals\
+
+\b boolean
+\b0 - two possibilities true and false.\
+
+\b char
+\b0 - is a single 16-bit Unicode character.  \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b\fs28 \cf0 \ul 5 September\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0\fs24 \cf0 \ulnone Methods - \
+How objects communicate with each other\
+all code/algorithms take place inside of a method\
+every method must have:\
+	a name - before the parens\
+	parameter list - inside of the parens, states the inputs of the method\
+	return type - before the name, states what kind of return the method has\
+		void is a valid return type\
+	scope - who can see and call the method\
+	\
+	open and close curly brace that will contain the method\
+	**can use a comment at the end of the curly bracket to show what it is closing\
+\
+public static void main(String[] args)\{\
+\} //end of main method\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul three distinct types of methods in java\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone 1) constructor method - creates an object\
+	there is no return type because it returns an object that is created of type className\
+	scope className(parameter list)\
+	e.g.		public square(int side)\{\
+			\}\
+	to create a new object we use the keyword 
+\b new
+\b0 .\
+	new className(param list);\
+	e.g.		square square1 = new square(5);\
+\
+2) instance method - is called on a particular object (an instance of an object)\
+	scope returnType methodName(parameterList)\
+	e.g.		public int getSide()\{\
+			\}\
+	to call, we use the instance it is called on with a period and the method name\
+	objectName.methodName(parameterList);\
+	e,g, 		int x = square1.getSide();\
+\
+3) static method - multiple meanings in different contexts (depending on static v. instance or static v. dynamic)\
+	in this case, static means that it is a method of the class, but not related to any specific object\
+	it is independent of the objects and can be called before they are created\
+	scope static  returnType methodName(parameterList)\
+	e.g.		public static void increaseCount()\{\
+			\}\
+	can't call in relation to an object, so we have to use a class name instead of an instance name like an instance method\
+	className.methodName(parameterList);\
+	e.g. 		square.increaseCount();\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul Big Example
+\b0 \ulnone \
+public static void main(String[] args)\{\
+	square sq1 = new square(5);\
+	square.increaseCount();\
+	square sq2 = new square(7);\
+	square.increaseCount();\
+\
+	int sum = sq1.getSide() + sq2.getSide();\
+	int avg = sum / square.getCount();\
+\}\
+\
+all typing is case sensitive, there are common conventions\
+~all class names are capitalized and all sub words\
+~all instance methods and static methods are camel case notation\
+~all object names are lowercase\
+\
+
+\b \ul primitive vs. non-primitive data types
+\b0 \ulnone \
+any method that gets called (run) gets put in a frame that keeps track of the progress and variables of a method\
+all primitive memory types get stored directly in the frame\
+all non-primitive data types get an address of where the data is stored\
+if a primitive data type is changed, it will replace the memory allocated in the frame\
+if a non-primitive data type is changed, the method will find a new place to allocate the memory and update the address in the frame\
+this is typically diagramed by a box\
+ __________\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 \ul | frame 1       	|\ulnone 	//this frame represents an instance of type rectangle\ul \
+\ulnone | length  2 	|	//side is of type int\
+| width 5	|\
+| color 	|	//color is of type string <- since we don't know how long a string is, we can't allocate the memory for it.  instead we store an address that points to where the string is stored\
+\ul | name 	|\ulnone  	//name also point to something else\
+\
+public static void swap(int x, int y, String a, String b)\{\
+	int temp = y; \
+	y = x;\
+	x = temp;\
+	a = "green";\
+\}\
+\
+if we call method swap(length, width, name, color), it will create a new frame\
+___________	\
+\ul | frame 2	|\ulnone \
+| 2 	x	|	//the integers for x and y get copied\
+| 5 	y	|\
+|	a	|	//the pointers to the address of the strings get copied\
+|	b	|\
+\ul |	temp	|\ulnone \
+\
+in this example, the length and width of the instance of the object square would not get changed, but the string would\
+\
+
+\b TALK ABOUT METHOD CLASS 3
+\b0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b\fs32 \cf0 \ul 10 Sept Lecture\
+
+\b0\fs26 \ulnone methods used on strings\
+\
+string string1 = "Help me";\
+\
+charAt(int index)	returns the char value at the specified index\
+int y = 0;\
+char x = string1.charAt(y);\
+\
+length()		returns the length of a string\
+int z = string1.length();\
+\
+using charAt to alphabetize two strings\
+\
+int y = 0;\
+do\{\
+	char x = string1.charAt(y);\
+	char v = string1.charAt(y);\
+	if(x>v)\{\
+		return string1;\
+	\}\
+	else if(v<x)\{\
+		return string2;\
+	\}\
+	else\{\
+		y++;\
+	\}\
+\}\
+while(y<min(string1.length(), string2.length())\
+\
+
+\b \ul Arrays
+\b0 \ulnone \
+a way of storing a sequence of any data type (int, float, char, etc\'85)\
+\
+int[] i = new int[5];\
+this will create a spot in memory that i points to that has a length of 5, with indices ranging from 0 to 4.\
+\
+differences between arrays and strings\
+a)arrays can take any data type, not just strings\
+b)cannot use string methods on arrays\
+c)to find the length, use .length\
+	int x = int x.length;\
+\
+on this last point, objects can have variables.\
+in the case of array objects, this variable is the length of the array\
+\
+
+\b\fs30 \ul 12 Sept
+\b0 \ulnone \
+
+\fs26 public static void main(String[] args)\{\
+	int x = 5;\
+	int y = 7;\
+	String a = "Hello";\
+	String b = "There";\
+	int[] u = new int[2];\
+	u[0] = x;\
+	u[1] = y;\
+	swap(x, y);\
+	swap(a, b);\
+	swap(u);\
+\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\fs24 \cf0 \
+public static void swap(int a, int b)\{			//this is an example of method overload.  \
+	int temp = a;						//both functions have the same name, but different parameter lists so its all good\
+	a = b;\
+	b = temp;\
+\}\
+\
+public static void swap(String x, String y)\{\
+	String temp = x;\
+	y = x;\
+	x = temp;\
+\}\
+\
+public static void swap(int[] a)\{\
+	int temp = a[0];\
+	a[0] = a[1];\
+	a[1] = temp;\
+\}\
+\
+**whenever i call a method and pass nonprimative data types, it can change it back in the main method**\
+\
+java filename args[0] args[1] \'85\
+\
+"5" = 5?  nope.  one is the integer 5 and the string representation of 5.\
+they are not the same, but we can convert.\
+\
+String x = "5";\
+int y = Integer.parseInt(x);				//these method calls only work if the string is a number\
+doubla a = Double.parseDouble(x);\
+\
+String b = "take " + 5;				//then b would be "take 5" - this is called "string concatenation"\
+\
+\ul classes\ulnone \
+a class has three parts\
+1) name - 	should be descriptive of what they are\
+		by convention, we use capital camel case notation\
+		also, should care about inheritance (we're going to stick with the parent class is class object)\
+2) variables -	accessible by all methods in this class\
+		these depend on what your program is trying to do with each object\
+3) methods - 	the only way other objects can communicate with objects in this class\
+		by being the only way to manipulate the objects variables, they protect the variables\
+\
+e.g. a car class that would be used by a mechanic shop\
+public Class Car\{\
+	private int year;\
+	private String model;\
+	private String vin;\
+	private double milage;\
+	private int timesServiced = 0;\
+	private static int carsServicedToday;\
+	private static int currentYear = 2012;\
+\
+	public Car(int yr, String m, String v, double mile)\{		//this is a constructor method\
+		year = yr;\
+		vin = v;\
+		model = m;\
+		milage = mile;\
+	\}\
+	\
+	public Car(Sting m, String v)\{\
+		year = currentYear;\
+		mileage = 0;\
+		model = m;\
+		vin = v;\
+	\}\
+	public Car(String m, String v, double mile)\{\
+		model = m;\
+		vin = v; \
+		mileage = mile;\
+		year = currentYear;\
+	\}\
+\
+	public int getYear()\{\
+		return year;\
+	\}\
+\
+	public void setMilage(double mil)\{\
+		if(mil < milage)\{\
+			System.out.println("milage must be larger than the previous milage (" + milage + " miles)");\
+		\}\
+		else\{\
+			milage = mil;\
+		\}\
+	\}\
+\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b\fs28 \cf0 \ul Sept 19
+\b0\fs24 \ulnone \
+if we declare a variable of a class final, then after it is initially set, it cannot be changed\
+	i.e.	private final int year;\
+if a variable is declared final, and therefore cannot be changed, and we don't care if other methods can see it, then we can declare it public.\
+	i.e. 	public final int year;\
+now we can get the variable without having to create a getVariable method\
+\
+consider the following:\
+String st1 = "Hello";\
+char[] c1 = \{"h", "e", "l", "l", "o"\};\
+int x = st1.length();			//we use length(), the get length method of the string class\
+int y = c1.length;			//we use .length because it is a public final variable\
+\
+since error checking can be a lengthy (code length wise) process, we can create a method to do it for us to help us out\
+\
+private Boolean isValueMiles(double m)\{\
+	if(m<0)\{\
+		System.out.println("The milage must be a positive number);\
+		return false;\
+	\}\
+	else if(milage!=Null)\{\
+		if(m<milage)\{\
+			System.out.println("The milage can't go down");\
+			return false;\
+		\}\
+	\}\
+	return true;\
+\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul static data strcutures vs. dynamic data structure\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone static data structures are objects that contain data and then don't  "move"\
+	think of an array\
+	we can't insert or add onto the end since the size is a final value\
+dynamic data structures are objects that we can add to\
+	contain "nodes" - objects composed of two elements\
+		1. data element\
+		2. pointer\
+	by linking these together, we get a linked list that allows us to grow, append, delete, and insert\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul Sept 24th\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone modularity - we create objects, small components, and we use them to create bigger things\
+\
+public class Node\{\
+	private String data;\
+	private Node next;			//one of the variables of a node is a next node\
+\
+	public Node(String s)\{		//constructor\
+		data = s;\
+	\}	\
+	\
+	public String getData()\{\
+		return s;\
+	\}\
+\
+	public Node getNode()\{\
+		return next;\
+	\}\
+\
+	public void setNext(Node n)\{\
+		next = n;\
+	\}\
+\}\
+\
+public class LinkedList\{\
+	private Node head;			//the head is the first number in the linked list\
+	private int count = 0;		//the number of nodes in the linked list\
+	//private Node tail;			//points to the last node in the linked list\
+\
+	public LinkedList()\{\
+	\}\
+\
+	public LinkedList(Node n)\{\
+		head = n;\
+		count =1;\
+	\}\
+\
+	public LinkedList(String s)\{	//creates a linked list with the first node using the value s\
+		head = new Node(s);	//creates the first node in the linked list\
+		count = 1;\
+	\}\
+\
+	public void printAll()\{\
+		Node current = head;\
+		for(n = 0; n<count; n++)\{\
+			System.out.println(current.getData();\
+			current = current.getNext();\
+		\}\
+	\}\
+\
+	public void append(String s)\{\
+		Node current=head;\
+		for(int n = 1; n<count; n++)\{\
+			current = current.getNext();\
+		\}\
+		*/while(current.getNext() != NULL)\{\
+			current=current.getNext();\
+		\}*/\
+		current.setNext(new Node(s));			//current is the last node in the list.  we pass a newly created node to current's next variable.\
+		count ++;\
+	\}\
+\
+	*/OTHER OPTION IF WE HAVE TAIL AS A VARIABLE OF LINKED LIST\
+	public void append(String s)\{\
+		tail.setNext(new Node(s));\
+		tail = tail.getNext();\
+		count ++;\
+	\}*/\
+\
+	public void insert(String s)\{\
+\
+	\}\
+\
+	public void delete(String s)\{\
+		Node current = head;\
+		Node previous;\
+\
+		while(current != NULL)\{\
+			if(current.data == s)\{						//not technically cool in java to compare strings, but just an example.\
+				if(current == head)\{\
+					head = head.getNext();\
+				\}\
+				else if(current == last)\{\
+					previous.setNext (current.getNext());\
+					last = previous\
+				\}\
+				else\{\
+					previous.setNext(current.getNext());		//sets the previous nodes next as the current nodes next, effectively deleting\
+				\}\
+				count --;\
+				break;\
+			\}\
+			else\{\
+				previous = current;\
+				current = current.getNext();\
+			\}\
+		\}\
+	\}\
+\}\
+\
+for hw for next time, scotch our an insert method and replace method.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul 10 Oct 2012\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone bidirectional linked list - pretty straight forward\
+	each node has a pointer to the previous node and a pointer to the next node\
+\
+circular linked list\
+	the last node points to the first node in the linked list\
+\
+trees\
+	root (parent) node\
+	in a binary tree, the parent points to two children \
+		by convention, "right" and "left"\
+	each child has two children, et cetra\
+\
+two data nodes - two different data variables in the node\
+\
+GUI's - graphical user interface\
+import javax\
+\
+creating a JFrame\
+public static void initialize()\{\
+	mySSNGUI = new JFrame();\
+	mySSNGUI.setSize(400, 200);		//width and length\
+	mySSNGUI.setLocation(100, 100);\
+	mySSNGUI.setTitle("Social SecurityNumbers");\
+	\
+	mySSNGUI.setDefaultCloseOperation(JFrame.EXIT ON CLOSE);		//must do this every time, its a closing variable or some shit\
+	mySSNGUI.setVisible(true);\
+\}\
+\
+public static void printSSNtoJFrame(JFrame jf, String[] list, int size)\{\
+	Container myNontentPane = jf.getContentPane();\
+	TextArea myTextArea = new TextArea();\
+	myContentPane.add(myTextArea);\
+	\
+	my TextArea.append("Hello \\n");\
+\}\
+\
+It is more common for the "main" application to be a separate class from the GUI.\
+	the GUI is just used as the go between\
+	all computation is done and altering of data is done by other methods\
+\
+public class SSNGUI extends JFrame\{\}		//this is creating a new class for a soc security number gui. it inherits all of its props from the JFrame class\
+\
+to divide the ContentPane into different areas, we can use a LayoutManager\
+	there are several LayoutManagers available, including\
+		BorderLayout - North, South, East, West, and Center\
+		GridLayout(x,y) - an x by y grid\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul 15 oct lecture - notes form david (need to look at ppt available blackboard)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone Inheritance and Polymorphism\
+Java can only inherit from 1 class\
+*1* top down or derived inheritance\
+*2* bottom up or abstracted\
+\
+GradStudent inherits from Student\
+UnderGradStudent inherits from Student\
+\
+Parent class is first and used to make children classes.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul 17 oct lecture\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone Abstract Superclasses and Abstract Methods\
+	When we define a superclass, we often do not need to create any instances of the superclass\
+	Depending on whether we need to create instances of the superclass, we must define the class differently\
+e.g. we have a parent class Student and two children classes GradStudent and UnderGradStudent and a different class Teacher\
+	we want the Teacher to be able to interact with the instances of GradStudent and UnderGradStudent with the same command\
+		but the interactions will be different between the two different classes\
+\
+An abstract class is a class\
+	defined with the modifier abstract OR\
+	that contains an abstract method OR\
+	that does not provide an implementation of an inherited abstract method\
+An abstract method is a method with the keyword 
+\b abstract
+\b0 , and it ends with a semicolon instead of a method body\
+\
+Student does not have to be Undergraduate or Graduate\
+	in this case, we may design the Student class in one of two ways\
+\
+\
+Inheritance versus Interface\
+	the Java interface is used to share common behavior (only method headers) among the instances of different classes\
+	Inheritance is used to share common code (including both data members and methods) among the instances of related classes\
+	In program designs, remember to use the Java interface to share common behavior.  Use inheritance to share common code\
+	If an entity A is a specialized form of another entity B, then model them by using inheritance\
+		Declare A as a subclass as B\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul 24-oct lecture\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b0 \cf0 \ulnone event driven programming\
+\
+An interface is a collection of method headings\
+	interfaces are implemented by a java class\
+	if an interface is implemented, all methods specified in the interface must be provided by that class\
+	an interface, if implemented guarantees that all methods will be defined\
+	
+\b you implement an interface and you extend a class
+\b0 \
+\
+public interface X\{\
+	public int y (int z);\
+	public void q();\
+\}\
+\
+public class A implements X\{\
+	public int y(int z) \{return z+1\}\
+	public void q() \{ \}\
+\}\
+\
+Interface ActionListener\
+	contains a method heading actionPerformed(ActionEvent)\
+		is called when an even happens\
+		each even must be registered with an action listener\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 \ul 12 Nov\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 \ulnone Recursion\
+
+\b0 fibonacci\
+fib[n]	= fib[n-1]+fib[n-2] 	if n>2\
+	= 1			if n=1 or n=2\
+\
+public static int fib(int n)\{\
+	if(n<1)\{\
+		return 0;\
+	\}\
+	else if(n==1 || n==2)\{\
+		return 1;\
+	\}\
+	else\{\
+		return fib(n-1) + fib(n-2)\
+	\}\
+\}\
+\
+this is nice and neat, but it blows for speed.  it makes so many calls to fib, it'll blow your mind.\
+	O[2^n] 	wow does that suck!\
+\
+public static int fib(int n)\{\
+	int x = 1;\
+	int y = 1;\
+	int sum = 1;\
+	int count = 2;\
+	while(n>=count)\{\
+		int temp = sum;\
+		sum = x+y;\
+		x= y;\
+		y = temp;\
+		count++;\
+	\}\
+\}\
+\
+merge sort\
+17 | 3 | 21 | 11 | 5 | 4 | 9 | 7 | 13 | 51 | 28 | 19\
+sort the first half and second half of the array (a recursive merge sort)\
+3 | 4 | 5 | 11 | 17 | 21 | 7 | 9 | 13 | 19 | 28 | 51\
+now merge them back together\
+3 | 4 | 5 | 7 | 9 | \'85\
+\
+this operates on O(n log(n))\
+\
+public static void mergeSort(int[] a, int s, int e)\{\
+	if(s == e)\{\
+		return;\
+	\}\
+	else\{\
+		int mid = (s+e)/2;\
+		mergeSort(a, s, mid);\
+		mergeSort(a, mid+1, e);\
+		merge(a, s, mid, e);\
+	\}\
+\}\
+public static void megte(int[] a, int s, int mid, int e)\{\
+	int length = e-s+1;\
+	int[] temp = new int[length];\
+	int x = s;\
+	int y = mid + 1;\
+	int z = 0;\
+	for(int z = 0; int z < length; z++)\{\
+		if(x>mid)\{\
+			temp[z] = a[y];\
+			y++;\
+		\}\
+		else if(y>e)\{\
+			temp[z] = a[x];\
+			x++;\
+		\}\
+		else if(a[x] > a[y])\{\
+			temp[z] =  a[y];\
+			y++\
+		\}\
+		else\{\
+			temp[z] = a[x];\
+			x++;\
+		\}\
+	\}\
+	for(\'85)\{copy temp back into a\}\
+\}\
+for homework, fuck around with this shit\
+\
+
+\b 14 Nov\
+
+\b0 when we run a program, we run a stack.\
+	we start with the main method\
+	every new call to a method is a push\
+	in recursive algorithms we push the same method over and over\
+	the \} symbols work as a pop and we return to the line from before the push\
+	each element in the stack holds onto three things\
+		the method names\
+		the return line (where we go to next)\
+		the variable list\
+\
+\
+public static void example1(int a, int b)\{			//this does the recursive call first, once all the calls are done, then it prints things out\
+	if(a>b)\{\
+		example1(a-1, b);\
+		System.out.println(a,b);\
+	\}\
+\}\
+\
+VS\
+\
+public static void example1(int a, int b)\{\
+	if(a>b)\{\
+		System.out.println(a,b);			//this prints things out before the recursive call is made, effectively flipping the order\
+		example1(a-1, b);\
+	\}\
+\}\
+\
+/*pascals triangle\
+//@variables	int x	distance from the right on the triangle\
+//		int y 	how many rows down we are\
+//@return	int	the value at that location in pascals triangle\
+/*\
+public static int pt(int x, int y)\{\
+	if(x==0||x==y)\{\
+		return 1;\
+	\}\
+	else\{\
+		return pt(x-1, y-1) + pt(x, y-1);\
+	\}\
+\}\
+this looks like it will take long as hell\
+to save some time we can do "dynamic programming"\
+	we have a double array that holds onto values we've already gotten so we don't recompute them\
+	could save a fuck ton of time\
+\
+
+\b 19 November
+\b0 \
+\
+public static void towersOfHanoi(int n, int start, int e, int t)\{\
+	if(n==1)\{\
+		System.out.println("disk moved from " + start + " to " end);\
+	\}\
+	\
+	else\{\
+		towersOfHanoi(n-1, start, temp, end);\
+		System.out.println("disk moved from" + start + " to " + end);\
+		towersOfHanoi(n-1, temp, end, start);\
+	\}\
+\}\
+\
+consider n equals 4\
+output					stack\
+1 to 2					n=4	s=1	e=3 	t=2\
+1 to 3					n=3 	s=1	e=2	t=3\
+2 to 3					n=2	s=1	e=3	t=2			//third\
+1 to 2					n=1	s=1	e=2	t=3			//first execution done					n=1	s=2	e=3	t=1			//second\
+					n=2	s=3	e=2	t=1			\
+					n=1	s=3	e=1	t=2			//etc\
+\
+QuickSort - a quick sorting algorithm\
+	we have an array of numbers\
+	and there is a central point called the pivot\
+	step 1\
+		all numbers < pivot to the left\
+		all numbers >pivot to the right\
+	step 2\
+		recursively call quick sort to array to the left of the pivot and the right of the pivot\
+	step 3\
+		put the left array, pivot, and right array, back into a large array\
+	bonus step\
+		the sorting algorithm is faster on average if at n=5 you switch to a bubble or insertion sort\
+\
+
+\b November 26 notes
+\b0 \
+Reading and writing to files\
+	to read or write we must use the io package\
+\
+import java.io.*;\
+import java.util.StringTokenizer;\
+\
+public class whatever\{\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\tx12980\ql\qnatural\pardirnatural
+\cf0 	public static void main(String[] args) throws IOException\{			 	//the main method\
+		Boolean flag = true;	\
+		BufferedReader br;									//creates a buffered reader\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 		while(flag)\{\
+			try\{\
+				String filename = JOptionPane.showInputDialogBox(null, "What is the filename");\
+			\
+				br = new BufferedReader(\
+					new InputStreamReader(\
+						new FileInputStream("filename")));\
+				\
+				flag = false;\
+			\}\
+			catch (IOException ion)\{\
+				JOptionPane.showMessage(null, "that file doesn't exist");\
+			\}\
+		\}\
+		try\{\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\tx12980\ql\qnatural\pardirnatural
+\cf0 			pw = newPrintWriter(							//need to put the whole while() try() stuff with a flag\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 				new BufferedWriter(\
+					new outputStreamWriter(\
+						new FileOutputStream(filename2))));\
+		\}\
+		catch(IOException ion)\{\
+\
+		\}\
+\
+		try\{\
+			string line = br.readLine();\
+			while(line!=null)\{\
+				StringTokenizer st = new StringTokenizer(line);\
+				while(st.hasMoreTokens())\{\
+					System.out.println(st.nextToken());\
+				\}//while st\
+				line = br.readLine();\
+			\}//while ln\
+		\}\
+		catch(IOEException ion)\{\
+\
+		\}\
+	\}\
+\}\
+\
+the buffered writer will write to a 'buffer'\
+it fills up the buffer until its full\
+then the entire buffer gets sent to the file in one shot\
+uses the IO bus less often and more efficiently\
+\
+sometimes we want to override the buffer manually\
+to do that we use a flush\
+	pw.flush;\
+\
+
+\b 28 November\
+
+\b0 comparable interface- used to compare two objects of a user created class\
+	method signature\
+		name\
+		return type\
+		variables\
+\
+Generics\
+	passing a type to a class, and thereby restricting the reference to the class by type\
+	eg\
+		Comparable <DATE> c= new Date()\
+\
+public class Team implements Comparable<Team>\{\
+	private String name;\
+	private int wins;\
+	private loses;\
+\
+	etc\'85\
+\
+	public int compareTo(Object o)\{\
+		\
+	\}\
+\}\
+\
+public class Division\{\
+	Team[] t = new Team[4];\
+\
+	public void sort()\{\
+		if(t[0].compareTo(t[1]))\{\
+\
+		\}\
+	\}\
+\}\
+\
+the following code snippet without generics requires casting;\
+List list = new ArrayList();\
+list.add("hello");\
+String s = (String) list.get(0);\
+\
+When re-written to use generics, the code does not require casting\
+List<String> list = new ArrayList<String>();\
+list.add("hello");\
+String s = list.get(0);\
+\
+public class Box<T> \{\
+	//T stands for "Type"\
+	private T object;\
+\
+	public void set(T t)\{\
+		this.t = t;\
+	\}\
+	\
+	public T get()\{\
+		return t;\
+	\}\
+\}\
+\
+Box<Integer> intBox;		//read a box of integer\
+\
+
+\b 3 December - Threads\
+
+\b0 Thread is the main driver of a program\
+\
+Thread class implement Runnable\
+\
+Runnable contains "public void run();"\
+\
+Your "Thread" class will extend Thread\
+\
+public static main(\'85)\{\
+	Thread t1 = new MyThread();\
+	\'85\
+	t1.start();\
+\}\
+\
+this will start a second thread running in parallel\
+\
+
+\b Dec 5 - test review
+\b0 \
+We need to know run time exceptions and that they do not need to be thrown\
+\
+\
+not a run time exception:\
+ioexception\
+\
+run time exceptions:\
+null pointer\
+number format\
+index out of bounds \
+\
+ways to make a class abstract\
+1. declare it abstract\
+2. contain an abstract method\
+3. contain an inherited abstract method that remains undefined\
+\
+write a class "MyMathException" that extends the Exception class\
+	contains two constructors, one with a parameter and one without\
+\
+public class MyMathException extends Exception\{\
+	public MyMathException()\{\
+		super();					//calls the constructor of the parent class (exception)\
+	\}\
+	public MyMathException(string s)\{\
+		super(s);\
+	\}\
+\}\
+\
+write an abstract class equations\
+	it contains an int last, abstract method compute, and method getLast\
+\
+public abstract class Equations\{\
+	protected int last;\
+	public abstract void compute(int x);\
+	public int getLast() throws MyMathException\{\
+		if(last == null)\{\
+			throw new MyMathException();\
+		\}\
+		return last;\
+	\}\
+\}\
+\
+public class Factorial extends Equations\{\
+	public void compute(int x) throws MyMathException\{\
+		if(x<0)\{\
+			throw MyMathException("ahh!");\
+		\}\
+		if(x==0)\{\
+			last = 1;\
+		\}\
+		else\{\
+			Factorial f = new Factorial();\
+			f.compute(x-1);\
+			last = f.getLast() * x\
+		\}\
+	\}\
+\}\
+\
+public class Question3\{\
+	public void a()\{\
+		try\{\
+\
+		\}\
+		catch(MyMathException mme)\{\
+\
+		\}\
+	public void b() throws MyMathException\{\
+\
+	\}\
+\}}
